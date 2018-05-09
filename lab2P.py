@@ -166,7 +166,7 @@ graficar_audio_respecto_tiempo(señal,x)
 #GRAFICO ESPECTOGRAMA
 graficar_espectograma(señal,rate)
 
-
+print(señal)
 #PUNTO 3, SOBRE EL AUDIO EN EL DOMINIO DE SU FRECUENCIA:
 # la señal se trabaja igual a como llego (sin realizar transformada de fourier)
 # solo se usa la transforma de fourier para analizar las frecuencias y obtener los valores de corte
