@@ -188,13 +188,21 @@ rate,info = read("beacon.wav")
 senal, largo_senal, t = getDatos(info,rate)
 
 #Los graficamos
-graphTime(t,senal,"Audio con respecto al tiempo", "Audio con respecto al tiempo.png")
+#graphTime(t,senal,"Audio con respecto al tiempo", "Audio con respecto al tiempo.png")
 
 #Sacamos la transformada de Fourier y graficamos.
 xfourier,yfourier = fourierTransformation(senal,len(senal))
 
 #Graficamos la transformada y el espectograma.
 graphTransformation(xfourier, yfourier, "Transformada de fourier audio original", "Transformada de fourier audio original.png")
+
+#Obtenemos inversa
+
+invFourier = getInverseFourier(yfourier,len(xfourier))
+#Graficamos inversa
+
+graphWithInverse(t,invFourier,"Gráfico inversa de fourier", "Gráfico inversa de fourier.png")
+
 
 graphSpecgram(senal,rate,"Espectograma audio original", "Espectograma audio original.png")
 
@@ -206,21 +214,40 @@ x1,filtradoLow = appLowFilter(senal,rate)
 graphTime(x1,filtradoLow,"Audio con filtro paso bajo", "Audio con filtro paso bajo.png")
 xfourier2, yfourier2 = fourierTransformation(filtradoLow,len(filtradoLow))
 graphTransformation(xfourier2,yfourier2,"Transformada Fourier y filtro paso bajo", "Transformada Fourier y filtro paso bajo.png")
+#Obtenemos inversa
+
+invFourier2 = getInverseFourier(yfourier2,len(xfourier2))
+#Graficamos inversa
+
+graphWithInverse(t,invFourier2,"Gráfico inversa de fourier filtro paso bajo", "Gráfico inversa de fourier filtro paso bajo.png")
+
 graphSpecgram(filtradoLow,rate,"Espectograma audio filtro paso bajo","Espectograma audio filtro paso bajo.png")
 
 
 #FILTRO PASO ALTO
 x2,filtradoHigh = appHighFilter(senal,rate)
-graphTime(x2,filtradoHigh,"Audio con filtro paso alto", "Audio con filtro paso alto.png")
+#graphTime(x2,filtradoHigh,"Audio con filtro paso alto", "Audio con filtro paso alto.png")
 xfourier3, yfourier3 = fourierTransformation(filtradoHigh,len(filtradoHigh))
 graphTransformation(xfourier3,yfourier3,"Transformada Fourier y filtro paso alto", "Transformada Fourier y filtro paso alto.png")
+#Obtenemos inversa
+
+invFourier3 = getInverseFourier(yfourier3,len(xfourier3))
+#Graficamos inversa
+
+graphWithInverse(t,invFourier3,"Gráfico inversa de fourier filtro paso alto", "Gráfico inversa de fourier filtro paso alto.png")
 graphSpecgram(filtradoHigh,rate,"Espectograma audio filtro paso alto","Espectograma audio filtro paso alto.png")
 
 #FILTRO PASO BANDA
 x3,filtradoBandPass = appBandPassFilter(senal,rate)
-graphTime(x3,filtradoBandPass,"Audio con filtro paso banda", "Audio con filtro paso banda.png")
+#graphTime(x3,filtradoBandPass,"Audio con filtro paso banda", "Audio con filtro paso banda.png")
 xfourier4, yfourier4 = fourierTransformation(filtradoBandPass,len(filtradoBandPass))
 graphTransformation(xfourier4,yfourier4,"Transformada Fourier y filtro paso banda", "Transformada Fourier y filtro paso banda.png")
+#Obtenemos inversa
+
+invFourier4 = getInverseFourier(yfourier4,len(xfourier4))
+#Graficamos inversa
+
+graphWithInverse(t,invFourier4,"Gráfico inversa de fourier paso banda", "Gráfico inversa de fourier paso banda.png")
 graphSpecgram(filtradoBandPass,rate,"Espectograma audio filtro paso banda","Espectograma audio filtro paso banda.png")
 
 write("sinRuidoLow.wav",rate,filtradoLow.astype('int16'))
