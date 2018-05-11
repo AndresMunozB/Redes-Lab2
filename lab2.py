@@ -15,6 +15,8 @@ import matplotlib.pyplot as plt
 from numpy import arange, linspace
 from pylab import savefig
 from scipy.fftpack import fft, ifft
+import warnings 
+warnings.filterwarnings('ignore')
 
 #==============================================================================
 # Función: En base a los datos que entrega beacon.wav se obtiene			   
@@ -188,7 +190,7 @@ rate,info = read("beacon.wav")
 senal, largo_senal, t = getDatos(info,rate)
 
 #Los graficamos
-#graphTime(t,senal,"Audio con respecto al tiempo", "Audio con respecto al tiempo.png")
+graphTime(t,senal,"Audio con respecto al tiempo", "Audio con respecto al tiempo.png")
 
 #Sacamos la transformada de Fourier y graficamos.
 xfourier,yfourier = fourierTransformation(senal,len(senal))
@@ -226,7 +228,7 @@ graphSpecgram(filtradoLow,rate,"Espectograma audio filtro paso bajo","Espectogra
 
 #FILTRO PASO ALTO
 x2,filtradoHigh = appHighFilter(senal,rate)
-#graphTime(x2,filtradoHigh,"Audio con filtro paso alto", "Audio con filtro paso alto.png")
+graphTime(x2,filtradoHigh,"Audio con filtro paso alto", "Audio con filtro paso alto.png")
 xfourier3, yfourier3 = fourierTransformation(filtradoHigh,len(filtradoHigh))
 graphTransformation(xfourier3,yfourier3,"Transformada Fourier y filtro paso alto", "Transformada Fourier y filtro paso alto.png")
 #Obtenemos inversa
@@ -239,7 +241,7 @@ graphSpecgram(filtradoHigh,rate,"Espectograma audio filtro paso alto","Espectogr
 
 #FILTRO PASO BANDA
 x3,filtradoBandPass = appBandPassFilter(senal,rate)
-#graphTime(x3,filtradoBandPass,"Audio con filtro paso banda", "Audio con filtro paso banda.png")
+graphTime(x3,filtradoBandPass,"Audio con filtro paso banda", "Audio con filtro paso banda.png")
 xfourier4, yfourier4 = fourierTransformation(filtradoBandPass,len(filtradoBandPass))
 graphTransformation(xfourier4,yfourier4,"Transformada Fourier y filtro paso banda", "Transformada Fourier y filtro paso banda.png")
 #Obtenemos inversa
